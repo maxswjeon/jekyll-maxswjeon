@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# File movement is considered as a creation
+
 Jekyll::Hooks.register :notes, :post_init do |note|
   commit_number = `git rev-list --count HEAD "#{ note.path }"`
 

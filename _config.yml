@@ -1,0 +1,14 @@
+plugins:
+  - jekyll-optional-front-matter
+
+collections:
+  notes:
+    output: true
+
+defaults:
+  - scope:
+      path: "_notes"
+      type: notes
+    values:
+      layout: post
+      permalink: /posts/:slug/

@@ -1,5 +1,19 @@
 ---
-layout: default
+layout: page
 ---
 
-{{ content }}
+{% include header.html type = "Page" %}
+<div class="p-6">
+  <div class="px-6">
+    <div class="flex">
+      <div class="flex-1">
+        {{ content }}
+      </div>
+      <div class="hidden lg:block w-[200px]">
+        <div class="sticky top-[48px] border-l border-gray-200 p-3">
+          <p class="text-lg font-semibold text-gray-600">Table of Contents</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

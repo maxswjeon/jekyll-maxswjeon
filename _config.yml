@@ -1,5 +1,5 @@
-name: Sangwan Jeon's Blog
-description: A blog about software development and other interesting things.
+name: Jekyll - Maxswjeon
+description: A Jekyll theme for easy editing experience
 
 plugins:
   - jekyll-postcss
@@ -22,4 +22,4 @@ defaults:
       type: notes
     values:
       layout: post
-      permalink: /pages/:slug/index.html
+      permalink: /posts/:slug/index.html

@@ -3,43 +3,31 @@ layout: page
 ---
 
 {% include header.html type = "Home" %}
-<div class="p-6">
-  <div class="px-6">
-    {% assign notes = site.notes | sort: 'date' | reverse %}
-    {% for note in notes %}
-      {% assign url = note.url %}
-      <a href="{{ url }}" class="block mt-3 border border-gray-200 rounded-md p-6 hover:bg-gray-200">
-        <h2 class="text-xl font-semibold">{{ note.title }}</h2>
-        <p class="mt-2 leading-normal line-clamp-2 text-gray-400">
-          {{ note.content | strip_html | truncatewords: 100 }}
-        </p>
-        <div class="flex items-center mt-3">
-          <div class="flex shrink-0 w-[120px] items-center">
-            <svg
-              class="w-3 h-3 fill-gray-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512">
-              <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" />
-            </svg>
-            <p class="ml-2 text-sm text-gray-400">
-              {{ note.date | date: "%B %-d, %Y" }}
+<div class="px-6">
+  {% assign notes = site.notes | sort: 'date' | reverse %}
+  {% for note in notes %}
+    {% assign url = note.url %}
+    <a href="{{ url }}" class="block mt-3 border border-gray-200 rounded-md p-6 hover:bg-gray-200">
+      <h2 class="text-xl font-semibold">{{ note.title }}</h2>
+      <p class="mt-2 leading-normal line-clamp-2 text-gray-400">
+        {{ note.content | strip_html | truncatewords: 100 }}
+      </p>
+      <div class="flex items-center mt-3">
+        <div class="flex shrink-0 w-[120px] items-center">
+          <i class="fa-regular fa-calendar w-3 h-3 text-gray-400 block"></i>
+          <p class="ml-2 text-sm text-gray-400">
+            {{ note.date | date: "%B %-d, %Y" }}
+          </p>
+        </div>
+        {% if note.categories.size > 0 %}
+          <div class="flex flex-1 items-center overflow-hidden">
+            <i class="fa-regular fa-folder-open w-3 h-3 ml-4 text-gray-400 block shrink-0"></i>
+            <p class="shrink ml-2 text-sm text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap">
+              {{ note.categories | join: " > " }}
             </p>
           </div>
-          {% if note.categories.size > 0 %}
-            <div class="flex flex-1 items-center overflow-hidden">
-              <svg
-                class="w-3 h-3 ml-4 shrink-0 fill-gray-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512">
-                <path d="M384 480h48c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224H144c-11.4 0-21.9 6-27.6 15.9L48 357.1V96c0-8.8 7.2-16 16-16H181.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8H416c8.8 0 16 7.2 16 16v32h48V160c0-35.3-28.7-64-64-64H298.5c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H87.7 384z" />
-              </svg>
-              <p class="shrink ml-2 text-sm text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap">
-                {{ note.categories | join: " > " }}
-              </p>
-            </div>
-          {% endif %}
-        </div>
-      </a>
-    {% endfor %}
-  </div>
+        {% endif %}
+      </div>
+    </a>
+  {% endfor %}
 </div>

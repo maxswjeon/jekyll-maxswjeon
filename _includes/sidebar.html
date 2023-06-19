@@ -1,0 +1,47 @@
+<section id="sidebar" class="block bg-gray-100 w-[320px] h-full p-12 fixed top-0 left-0 transform transition-transform ease-in-out duration-500 translate-x-[-320px] md:translate-x-0">
+  <a href="/">
+    <div class="rounded-full bg-gradient-to-br from-blue-500 to-purple-500 w-[120px] h-[120px]"></div>
+  </a>
+  <a href="/">
+    <h1 class="mt-12 font-bold text-2xl">{{ site.title }}</h1>
+  </a>
+  <p class="mt-3 text-gray-600">{{ site.description }}</p>
+  <ul class="mt-12">
+    {% if page.url == "/" %}
+      {% assign current_home = "bg-gray-200" %}
+    {% endif %}
+    <li class="p-3 rounded-lg {{ current_home }}">
+      <a href="/" class="flex items-center">
+        <i class="fa-solid fa-house w-5 h-5 mr-3 text-gray-600"></i>
+        <p class="text-gray-600">Home</p>
+      </a>
+    </li>
+    {% assign url_start_categories = page.url | slice: 0, 11 %}
+    {% if url_start_categories == "/categories" %}
+      {% assign current_categories = "bg-gray-200" %}
+    {% endif %}
+    <li class="p-3 rounded-lg {{ current_categories }}">
+      <a href="/categories" class="flex items-center">
+        <i class="fa-solid fa-folder w-5 h-5 mr-3 text-gray-600"></i>
+        <p class="text-gray-600">Categories</p>
+      </a>
+    </li>
+
+    {% for tab in site.tabs %}
+      {% assign url_start = tab.title | downcase | replace: ' ', '-' %}
+      {% assign url_start_length = url_start | size %}
+      {% assign page_url_start = page.url | slice: 1, url_start_length %}
+      {% if page_url_start == url_start %}
+        {% assign current = "bg-gray-200" %}
+      {% else %}
+        {% assign current = "" %}
+      {% endif %}
+      <li class="p-3 rounded-lg {{ current }}">
+        <a href="/{{ tab.title | downcase | replace: ' ', '-'  }}" class="flex items-center">
+          <i class="fa-solid fa-file w-5 h-5 mr-3 text-gray-600"></i>
+          <p class="text-gray-600">{{ tab.title | capitalize }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,42 @@
+<link
+  rel="stylesheet"
+  as="style"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.7/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<script
+  src="https://kit.fontawesome.com/611d227980.js"
+  crossorigin="anonymous"
+  async></script>
+<link
+  href="/assets/styles/main.css"
+  rel="stylesheet"
+  type="text/css" />
+<script
+  type="text/javascript"
+  src="/assets/scripts/main.js"
+  async
+  defer></script>
+<script
+  type="text/javascript"
+  src="/assets/scripts/search.js"
+  async></script>
+<script type="text/javascript">
+window.SimpleJekyllSearch({
+     searchInput: document.getElementById('search-dialog-input'),
+     resultsContainer: document.getElementById('results-container'),
+     json: '/assets/scripts/search.json',
+     searchResultTemplate: '<li><a href="{url}" title="{desc}" target="_blank">{title}</a></li>',
+     noResultsText: 'There is no result.',
+     limit: 10000,
+     fuzzy: false,
+     exclude: []
+});
+</script>
+
+{% seo title=false %}
+
+{% unless page.title %}
+  <title>{{ site.title }}</title>
+{% else %}
+  <title>{{ page.title }} | {{ site.title }}</title>
+{% endunless %}

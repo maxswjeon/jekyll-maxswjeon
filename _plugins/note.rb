@@ -31,7 +31,7 @@ module NotePlugin
         note.data['categories'] = note.relative_path.split('/')[1...-1]
 
         category = []
-        for i in 0..note.data['categories'].length-1
+        for i in 0..note.data['categories'].length - 1
           category.push(note.data['categories'][i])
           if !categories.include?(category.join('/'))
             categories.push(category.join('/'))

@@ -1,64 +1,9 @@
 ---
 layout: default
 ---
-
-{% if page.url == "/" %}
-  {% assign current_home = "bg-gray-200" %}
-  {% assign current_categories = "" %}
-  {% assign current_tags = "" %}
-{% else %}
-  {% assign url_start_categories = page.url | slice: 0, 11 %}
-  {% assign url_start_tags = page.url | slice: 0, 5 %}
-  {% if url_start_categories == "/categories" %}
-    {% assign current_home = "" %}
-    {% assign current_categories = "bg-gray-200" %}
-    {% assign current_tags = "" %}
-  {% elsif url_start_tags == "/tags" %}
-    {% assign current_home = "" %}
-    {% assign current_categories = "" %}
-    {% assign current_tags = "bg-gray-200" %}
-  {% endif %}
-{% endif %}
-
+  
 <main class="w-full min-h-full">
-  <section id="sidebar" class="block bg-gray-100 w-[320px] h-full px-6 py-12 fixed top-0 left-0 transform transition-transform ease-in-out duration-500 translate-x-[-320px] md:translate-x-0">
-    <a href="/">
-      <div class="rounded-full bg-gradient-to-br from-blue-500 to-purple-500 w-[120px] h-[120px]"></div>
-    </a>
-    <a href="/">
-      <h1 class="mt-12 font-bold text-2xl">{{ site.name }}</h1>
-    </a>
-    <p class="mt-3 text-gray-600">{{ site.description }}</p>
-    <ul class="mt-12">
-      <li class="p-3 rounded-lg {{ current_home }}">
-        <a href="/" class="flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 576 512"
-            class="w-5 h-5 mr-3 fill-gray-600"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" /></svg>
-          <p class="text-gray-600">Home</p>
-        </a>
-      </li>
-      <li class="p-3 rounded-lg {{ current_categories }}">
-        <a href="/categories" class="flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            class="w-5 h-5 mr-3 fill-gray-600"><path d="M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z" /></svg>
-          <p class="text-gray-600">Categories</p>
-        </a>
-      </li>
-      <li class="p-3 rounded-lg {{ current_tags }}">
-        <a href="/about" class="flex items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            class="w-5 h-5 mr-3 fill-gray-600"><path d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" /></svg>
-          <p class="text-gray-600">Tags</p>
-        </a>
-      </li>
-    </ul>
-  </section>
+  {% include sidebar.html %}
   <section id="main" class="flex-1 transform transition-transform ease-in-out duration-500 translate-x-0 md:ml-[320px]">
     <div class="container mx-auto">{{ content }}</div>
   </section>

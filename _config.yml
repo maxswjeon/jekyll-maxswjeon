@@ -1,8 +1,10 @@
-name: Jekyll - Maxswjeon
+title: Jekyll - maxswjeon
 description: A Jekyll theme for easy editing experience
+url: https://swjeon.dev
 
 plugins:
   - jekyll-postcss
+  - jekyll-seo-tag
 
 postcss:
   cache: false
@@ -15,7 +17,7 @@ front_matter:
 collections:
   notes:
     output: true
-  pages:
+  tabs:
     output: true
 
 defaults:
@@ -29,5 +31,5 @@ defaults:
       path: ""
       type: tabs
     values:
-      layout: page
+      layout: tab
       permalink: /:title/

@@ -22,3 +22,9 @@ body {
     }
   }
 }
+
+body[data-search-open] {
+  #search-dialog-background {
+    @apply block;
+  }
+}

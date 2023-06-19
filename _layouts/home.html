@@ -3,7 +3,8 @@ layout: page
 ---
 
 <div class="px-6">
-  {% for note in site.notes %}
+  {% assign notes = site.notes | sort: 'mtime' %}
+  {% for note in notes %}
     <a href="{{ note.url }}" class="block mt-3 border border-gray-200 rounded-md p-6 hover:bg-gray-200">
       <h2 class="text-xl font-semibold">{{ note.title }}</h2>
       <p class="mt-2 leading-normal line-clamp-2 text-gray-400">

@@ -1,10 +1,15 @@
 #!/usr/bin/env ruby
 
+# Note Plugin handles 
+# - slug creation for notes
+# - category management
+
 module NotePlugin
   class NotePageGenerator < Jekyll::Generator
     attr_accessor :site
 
     safe true
+    priority :normal
 
     def initialize(site)
       @site = site
@@ -13,10 +18,6 @@ module NotePlugin
     def generate(site)
       @site = site
 
-      # Handle notes without front matter
-      site.collections['notes'].docs.concat(notes)
-      site.static_files -= markdown_files      
-
       site.collections['notes'].docs.each do |note|
         # Need to changes as lowercase
         slug = File.basename(note.path, ".*")
@@ -24,52 +25,14 @@ module NotePlugin
         slug = slug.downcase
         note.data['slug'] = slug
 
-        site.pages << NotePage.new(site, site.source, note)
+        note.data['categories'] = note.relative_path.split('/')[1...-1]
       end
     end 
-
-    # From jekyll-optional-front-matter plugin, for supporting collection pages
-    def notes
-      markdown_files.map { |static_file| docs_from_static_file(static_file) }
-    end
-
-    def markdown_files
-      site.static_files.select { |file| markdown_converter.matches(file.extname) && file.relative_path =~ /notes\/.*\.md/ }
-    end
-
-    def docs_from_static_file(static_file)
-      document = Jekyll::Document.new(static_file.path, site: site, collection: site.collections['notes'])
-
-      data = {
-        'title' => File.basename(static_file.path, ".*"),
-      }
-
-      document.merge_data!(static_file.data)
-      document.merge_data!(data)
-      document.content = File.read(static_file.path)
-      document
-    end
-
-    def markdown_converter
-      @markdown_converter ||= site.find_converter_instance(Jekyll::Converters::Markdown)
-    end
   end
 
-  class NotePage < Jekyll::Page
-    def initialize(site, base, note)
-      @site = site
-      @base = base
-      @dir = File.dirname(note.relative_path)
-      @name = "index.html"
+  class CategoryPage < Jekyll::Page
+    def initialize(site, base, category)
 
-      self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'page.html')
-
-      note.data.each_pair do |key, value|
-        self.data[key] = value
-      end
-
-      self.data['permalink'] = "/notes/#{note.data['slug']}/"
-    end 
+    end
   end
 end

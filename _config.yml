@@ -1,5 +1,16 @@
+name: Sangwan Jeon's Blog
+description: A blog about software development and other interesting things.
+
 plugins:
-  - jekyll-optional-front-matter
+  - jekyll-postcss
+
+postcss:
+  cache: false
+
+front_matter:
+  collections:
+    - notes
+  remove_originals: true
 
 collections:
   notes:
@@ -7,8 +18,8 @@ collections:
 
 defaults:
   - scope:
-      path: "_notes"
+      path: ""
       type: notes
     values:
       layout: post
-      permalink: /posts/:slug/
+      permalink: /pages/:slug/index.html

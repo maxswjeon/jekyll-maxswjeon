@@ -1,0 +1,1 @@
+This is a sample post with category. You can add category to your post by creating a folder in `_notes` directory. The folder name will be used as the category name. The posts in the folder will be listed in the category page.

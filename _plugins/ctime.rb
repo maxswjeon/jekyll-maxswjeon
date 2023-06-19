@@ -8,5 +8,8 @@ Jekyll::Hooks.register :notes, :post_init do |note|
   if commit_number.to_i > 1
     ctime = `git log --diff-filter=A --pretty="%ad" --date=iso "#{ note.path }" | tail -1`
     note.data['ctime'] = ctime
+
+    # Set date to ctime if date is not set
+    note.data['date'] = ctime unless note.data['date']
   end
 end

@@ -1,0 +1,24 @@
+---
+---
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+@media (max-width: 767.9px) {
+  body[data-sidebar-open] {
+    #sidebar {
+      @apply translate-x-0;
+    }
+    #main {
+      @apply translate-x-[320px];
+    }
+  }
+}

@@ -3,7 +3,7 @@ layout: page
 ---
 
 <div class="px-6">
-  {% assign notes = site.notes | sort: 'mtime' %}
+  {% assign notes = site.notes | sort: 'mtime' | reverse %}
   {% for note in notes %}
     <a href="{{ note.url }}" class="block mt-3 border border-gray-200 rounded-md p-6 hover:bg-gray-200">
       <h2 class="text-xl font-semibold">{{ note.title }}</h2>
